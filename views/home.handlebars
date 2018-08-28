@@ -1,29 +1,31 @@
-    <div class="row">
-    <!-- <h2>Greeting Exercise</h2> -->
-      <div class="greeting">
-          <marquee><b><i><h2>Greetings!</h2></i></b></marquee>
+<div class="row">
+  <!-- <h2>Greeting Exercise</h2> -->
+  <div class="greeting">
+    <marquee><b><i><h2>Greetings!</h2></i></b></marquee>
+  </div>
+  <form class="" action="/greetings" method="post">
+
+      <div class="count">
+        <b>counter: <span class="counter">{{count}}</span></b>
       </div>
-      <form class="" action="/greetings" method="post">
-        <div class="count">
-        <b>counter: <span class="counter"></span></b>
-        </div>
-        <h3>Name :<input type="text" class="inputName" placeholder="Enter your name" name="name" value=""></h3>
+      <h3>Name :<input type="text" class="inputName" placeholder="Enter your name" name="name" value=""></h3>
 
-        <div class="languages">
-          <input type="radio" name="language" class="languageRadio" value="english">
-            <span class="label-body">English</span>
-          <input type="radio" name="language" class="languageRadio" value="afrikaans">
-            <span class="label-body">Afrikaans</span>
-          <input type="radio" name="language" class="languageRadio" value="isiXhosa">
-            <span class="label-body">IsiXhosa</span>
-        </div>
+      <div class="languages">
+        <input type="radio" name="language" class="languageRadio" value="english">
+        <span class="label-body">English</span>
+        <input type="radio" name="language" class="languageRadio" value="afrikaans">
+        <span class="label-body">Afrikaans</span>
+        <input type="radio" name="language" class="languageRadio" value="isiXhosa">
+        <span class="label-body">IsiXhosa</span>
+      </div>
 
 
-          <br>
-        <button type="submit" class="button-primary greetMe" name="button">Greet me</button>
-        <button type="button" class="button-primary reset" name="button"> Reset</button>
+      <br>
+      <button type="submit" class="button-primary greetMe" >Greet me</button>
+      <button type="button" class="button-primary reset" name="submit"> Reset</button>
 
-        <br>
-        </form>
-      <b><span class="getName">{{getMsg}}</span></b>
-    </div>
+      <br>
+
+  </form>
+  <b><span class="getName">{{getMsg}}</span></b>
+</div>
