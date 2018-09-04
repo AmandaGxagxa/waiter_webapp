@@ -9,6 +9,12 @@ const flash = require('express-flash');
 const pg = require('pg');
 const Pool = pg.Pool;
 
+
+
+
+
+
+
 //should we use a SSL connection
 let useSSL = false;
 let local = process.env.LOCAL || false;
