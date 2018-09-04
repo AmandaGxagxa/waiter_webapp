@@ -2,15 +2,17 @@
   <!-- <h2>Greeting Exercise</h2> -->
   <div class="greeting">
     <marquee><b><i><h2>Greetings!</h2></i></b></marquee>
+
   </div>
+  
   <form class="" action="/greetings" method="post">
 
       <div class="count">
         <b>counter: <span class="counter">{{count}}</span></b>
       </div>
       <h3>Name :<input type="text" class="inputName" placeholder="Enter your name" name="name" value=""></h3>
-
-      <div class="languages">
+          {{!-- <span class="errorMsg">{{errorMsg}}</span> --}}
+      <div class="languages sixteen columns vertical-offset-by-one">
         <input type="radio" name="language" class="languageRadio" value="english">
         <span class="label-body">English</span>
         <input type="radio" name="language" class="languageRadio" value="afrikaans">
@@ -18,11 +20,14 @@
         <input type="radio" name="language" class="languageRadio" value="isiXhosa">
         <span class="label-body">IsiXhosa</span>
       </div>
-
-
+<div class="error">
+    {{#if messages.info}}
+      <p class="err">{{messages.info}}</p>
+    {{/if}}
+  </div>
       <br>
       <button type="submit" class="button-primary greetMe" >Greet me</button>
-      <button type="button" class="button-primary reset" name="submit"> Reset</button>
+     <a href="/greeted"> <button type="button" class="button-primary reset" name="submit"> Greeted Names</button></a>
 
       <br>
 

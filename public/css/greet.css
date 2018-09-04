@@ -6,6 +6,33 @@ body{
 
 
 }
+.err{
+  color:crimson;
+  font-weight: bold;
+  margin: 2em;
+  padding: 1px;
+}
+.back{
+margin-right: 60em;
+}
+.reset{
+  margin-top: -20em;
+}
+a:link, a:visited {
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+
+
+a:hover, a:active {
+    /* background-color: blue; */
+    color: rgb(58, 26, 26);
+}
 table{
   text-align: center;
 }

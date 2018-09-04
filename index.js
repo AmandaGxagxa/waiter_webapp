@@ -5,7 +5,8 @@ const Greetings = require('./greet');
 const app = express();
 app.use(express.static('public'));
 const session = require('express-session');
-const pg = require("pg");
+const flash = require('express-flash');
+const pg = require('pg');
 const Pool = pg.Pool;
 
 //should we use a SSL connection
@@ -23,11 +24,11 @@ const pool = new Pool({
 });
 
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'heloo world',
   resave: false,
   saveUninitialized: true
 }));
-
+app.use(flash());
 
 // app.use(bodyParser());
 
@@ -41,23 +42,30 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 
-app.get("/", function(req, res) {
-  // let greetMe = greetings.msgGet();
-  let count = greetings.counter();
-  console.log(count)
+app.get("/", async function(req, res) {
+  let greetName = req.body.name;
+  let lang = req.body.language;
+  let getMsg = greetings.funcGreet(greetName, lang);
+  let count = await pool.query('select count(*) from greet');
+    count = count.rows[0].count;
   res.render('home', {
-    count
+    count,
+    getMsg
   });
 });
 
 
-app.post("/greetings", async function(req, res) {
-  try{
+app.post("/greetings", async function(req, res){
+  
     let greetName = req.body.name;
     let lang = req.body.language;
 
-
-    if (greetName !== "" || lang !== undefined){
+    if (greetName == "" && lang == undefined){
+      console.log('here')
+     req.flash('info', 'Please enter your name and select the language');
+    }
+    
+      else{
       let db = await pool.query('SELECT * FROM greet');
       let found = false;
       for (var i = 0; i < db.rows.length; i++) {
@@ -71,28 +79,40 @@ app.post("/greetings", async function(req, res) {
       if(!found){
         await pool.query('insert into greet (name, language, count) values ($1,$2,$3) ', [greetName, lang, 1])
       }
+    }
+    let getMsg = greetings.funcGreet(greetName, lang);
+    let count = await pool.query('select count(*) from greet');
+    count = count.rows[0].count;
+    res.render('home', {getMsg, count});
+
+    
+});
+app.get('/greetings/:name/:lang', async function (req, res) {
+  try{
+    let name = req.params.name.toUpperCase();
+    let lang = req.params.lang;
+    if (name !== "" || lang !== undefined){
+      let db = await pool.query('SELECT * FROM greet');
+      let found = false;
+      for (var i = 0; i < db.rows.length; i++) {
+        if( db.rows[i].name === name){
+          found =true;
+          let increment =  db.rows[i].count +1;
+          await pool.query('update greet set count = $1 where name=$2',[increment, name])
+        }
+
+      }
+      if(!found){
+        await pool.query('insert into greet (name, language, count) values ($1,$2,$3) ', [name, lang, 1])
+      }
 
 
     }
-    let Greet = await pool.query(greetings.funcGreet(greetName, lang));
+    let getMsg = greetings.funcGreet(name, lang);
     let count = await pool.query('select count(*) from greet');
     count = count.rows[0].count;
-    res.render('home', {getMsg:Greet, count})
-  } catch (err){
-    res.send(err.stack);
-  }
+    res.render('home', {getMsg, count})
 
-  // let count = greetings.counter();
-
-
-})
-app.get('/greetings/:name/:lang', async function(req, res) {
-  try{
-    let name = req.params.name;
-    // let lang = req.body.language;
-    let Greet = await pool.query(greetings.funcGreet(name, lang));
-    let count = greetings.counter();
-    res.render('home', {getMsg :Greet, count})
   } catch(err){
     res.send(err);
   }
@@ -110,6 +130,11 @@ res.send(err);
 }
 
 })
+app.get('/reset', async function(req,res){
+  await pool.query('delete from greet');
+res.redirect('/');
+});
+
 
 
 let PORT = process.env.PORT || 4010;

@@ -11,16 +11,16 @@ module.exports = function Greetings() {
         if(nameMap[name] === undefined){
           nameMap[name] = 0;
           if (lang == "english") {
-            msg = "HELLO, " + name + "!";
+            msg = 'HELLO, ' + name + '!';
           } else if (lang == "afrikaans") {
-            msg = 'HALLO, '  + name + "!" ;
+            msg = 'HALLO, '  + name + '!' ;
           } else if (lang == "isiXhosa") {
-            msg = "MOLO, " + name + "!";
+            msg = 'MOLO, ' + name + '!';
           }
         }
-
+          return msg;     
       }
-    return msg;
+
   }
 
   function setLang(value) {
