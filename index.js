@@ -8,7 +8,6 @@ const session = require('express-session');
 const flash = require('express-flash');
 const pg = require('pg');
 const Pool = pg.Pool;
-//const lodash = require('lodash')
 
 //should we use a SSL connection
 let useSSL = false;
@@ -56,13 +55,12 @@ app.get("/", async function(req, res) {
 });
 
 
-app.post("/greetings", async function(req, res){
+app.post("/greetings", async function(req, res) {
   
     let greetName = req.body.name;
     let lang = req.body.language;
 
     if (greetName == "" && lang == undefined){
-      console.log('here')
      req.flash('info', 'Please enter your name and select the language');
     }
     
@@ -88,6 +86,7 @@ app.post("/greetings", async function(req, res){
 
     
 });
+
 app.get('/greetings/:name/:lang', async function (req, res) {
   try{
     let name = req.params.name.toUpperCase();
