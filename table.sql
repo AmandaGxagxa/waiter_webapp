@@ -6,11 +6,7 @@ create table greet(
   language text not null
 );
 
-create table countNames(
-	id serial not null primary key,
-	count int not null,
-	foreign key(count) references greet(id)
-);
+
 
 -- insert into greet(name, language) values('Amanda', 'english');
 -- insert into greet(name, language) values('Yolisa', 'isiXhosa');
