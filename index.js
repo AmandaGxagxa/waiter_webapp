@@ -70,8 +70,13 @@ app.post("/greetings", async function(req, res) {
     if (greetName == "" && lang == undefined){
      req.flash('info', 'Please enter your name and select the language');
     }
-    
-      else{
+    else if(greetName == ""){
+      req.flash('info', 'Please enter your name!');
+    }
+    else if(lang == undefined){
+      req.flash('info', 'Please select a language!');
+    }
+    else{
       let db = await pool.query('SELECT * FROM greet');
       let found = false;
       for (var i = 0; i < db.rows.length; i++) {
