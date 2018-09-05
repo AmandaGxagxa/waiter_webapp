@@ -3,7 +3,8 @@ drop table if exists greet , countNames;
 create table greet(
 	id serial not null primary key,
 	name text not null unique,
-  language text not null
+  language text not null,
+	count int not null
 );
 
 
