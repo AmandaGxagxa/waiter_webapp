@@ -43,8 +43,11 @@ app.set('view engine', 'handlebars');
 
 
 app.get("/", async function(req, res) {
+  try{
+
   let greetName = req.body.name;
   let lang = req.body.language;
+
   let getMsg = greetings.funcGreet(greetName, lang);
   let count = await pool.query('select count(*) from greet');
     count = count.rows[0].count;
@@ -52,11 +55,15 @@ app.get("/", async function(req, res) {
     count,
     getMsg
   });
+}
+catch(err){
+
+}
 });
 
 
 app.post("/greetings", async function(req, res) {
-  
+  try{
     let greetName = req.body.name;
     let lang = req.body.language;
 
@@ -83,7 +90,10 @@ app.post("/greetings", async function(req, res) {
     let count = await pool.query('select count(*) from greet');
     count = count.rows[0].count;
     res.render('home', {getMsg, count});
+  }
+  catch(err){
 
+  }
     
 });
 
