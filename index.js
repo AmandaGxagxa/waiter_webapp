@@ -8,12 +8,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const pg = require('pg');
 const Pool = pg.Pool;
-
-
-
-
-
-
+//const lodash = require('lodash')
 
 //should we use a SSL connection
 let useSSL = false;
