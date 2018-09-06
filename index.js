@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const Greetings = require('./greet');
+const routs  = require('./routes/greetings')
 const app = express();
 app.use(express.static('public'));
 const session = require('express-session');
@@ -40,115 +41,13 @@ app.engine('handlebars', exphbs({
   defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
+const greetRouts = routs(pool);
 
-
-app.get("/", async function(req, res) {
-  try{
-
-  let greetName = req.body.name;
-  let lang = req.body.language;
-
-  let getMsg = greetings.funcGreet(greetName, lang);
-  let count = await pool.query('select count(*) from greet');
-    count = count.rows[0].count;
-  res.render('home', {
-    count,
-    getMsg
-  });
-}
-catch(err){
-
-}
-});
-
-
-app.post("/greetings", async function(req, res) {
-  try{
-    let greetName = req.body.name;
-    let lang = req.body.language;
-
-    if (greetName == "" && lang == undefined){
-     req.flash('info', 'Please enter your name and select the language');
-    }
-    else if(greetName == ""){
-      req.flash('info', 'Please enter your name!');
-    }
-    else if(lang == undefined){
-      req.flash('info', 'Please select a language!');
-    }
-    else{
-      let db = await pool.query('SELECT * FROM greet');
-      let found = false;
-      for (var i = 0; i < db.rows.length; i++) {
-        if( db.rows[i].name === greetName){
-          found =true;
-          let increment =  db.rows[i].count +1;
-          await pool.query('update greet set count = $1 where name=$2',[increment, greetName])
-        }
-
-      }
-      if(!found){
-        await pool.query('insert into greet (name, language, count) values ($1,$2,$3) ', [greetName, lang, 1])
-      }
-    }
-    let getMsg = greetings.funcGreet(greetName, lang);
-    let count = await pool.query('select count(*) from greet');
-    count = count.rows[0].count;
-    res.render('home', {getMsg, count});
-  }
-  catch(err){
-
-  }
-    
-});
-
-app.get('/greetings/:name/:lang', async function (req, res) {
-  try{
-    let name = req.params.name.toUpperCase();
-    let lang = req.params.lang;
-    if (name !== "" || lang !== undefined){
-      let db = await pool.query('SELECT * FROM greet');
-      let found = false;
-      for (var i = 0; i < db.rows.length; i++) {
-        if( db.rows[i].name === name){
-          found =true;
-          let increment =  db.rows[i].count +1;
-          await pool.query('update greet set count = $1 where name=$2',[increment, name])
-        }
-
-      }
-      if(!found){
-        await pool.query('insert into greet (name, language, count) values ($1,$2,$3) ', [name, lang, 1])
-      }
-
-
-    }
-    let getMsg = greetings.funcGreet(name, lang);
-    let count = await pool.query('select count(*) from greet');
-    count = count.rows[0].count;
-    res.render('home', {getMsg, count})
-
-  } catch(err){
-    res.send(err);
-  }
-
-  // let getMsg =  await greetings.msgGet();
-
-})
-app.get('/greeted', async function (req,res) {
-try {
-  let greetedNames = await pool.query('SELECT * FROM greet')
-  let nameKept = greetedNames.rows;
-  res.render('greeted', {nameKept});
-} catch (err) {
-res.send(err);
-}
-
-})
-app.get('/reset', async function(req,res){
-  await pool.query('delete from greet');
-res.redirect('/');
-});
+app.get("/",greetRouts.toHomePage) ;
+app.post("/greetings",greetRouts.postRoute);
+app.get('/greetings/:name/:lang', greetRouts.greetUrl);
+app.get('/greeted', greetRouts.greetedRoute);
+app.get('/reset', greetRouts.resert);
 
 
 

@@ -3,48 +3,47 @@
 }
 body{
   text-align: center;
+  background: grey;
 
-
+}
+.name{
+  margin-top: 5em;
+  color:green;
 }
 .err{
   color:crimson;
   font-weight: bold;
-  margin: 2em;
+  margin-top: 5em;
   padding: 1px;
 }
 .back{
-margin-right: 60em;
+color: aliceblue;
+background-color: darkgreen;
 }
-.reset{
-  margin-top: -20em;
-}
-a:link, a:visited {
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-family:Arial, Helvetica, sans-serif;
-    font-weight: bold;
-  }
 
 
-a:hover, a:active {
-    /* background-color: blue; */
-    color: rgb(58, 26, 26);
-}
 table{
   text-align: center;
 }
 .container{
-  border: solid black;
-    background: grey;
-    border-radius: 20px;
+  border: solid whitesmoke;
+  background-color: white;
+  border-radius: 20px;
 }
-.greetings{
+.greeting{
   font-weight: bold;
 }
-
+.label-body{
+  font-size: 30px;
+}
+th{
+  font-weight: bolder;
+  font-size: 30px;
+}
+td{
+  font-weight: bold;
+  font-size: 20px;
+}
 .count{
 margin-left: 400px;
 border-color: red;
@@ -52,10 +51,13 @@ font-size: 20px;
 }
 .reset{
 margin-left: 320px;
+color: aliceblue;
+background-color: brown;
 }
 .languageRadio{
   /* padding: 2px; */
   font-size: 20px;
+
 }
 span{
   font-size: 30px;
@@ -63,4 +65,7 @@ span{
 }
 h2{
   color: maroon;
+}
+.button-primary{
+  margin-top: 10em;
 }

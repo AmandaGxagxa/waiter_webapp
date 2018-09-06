@@ -13,24 +13,43 @@
       <h3>Name :<input type="text" class="inputName" placeholder="Enter your name" name="name" value=""></h3>
           {{!-- <span class="errorMsg">{{errorMsg}}</span> --}}
       <div class="languages sixteen columns vertical-offset-by-one">
-        <input type="radio" name="language" class="languageRadio" value="english">
+        <div class="four columns radio">
+          <input type="radio" name="language" class="languageRadio" value="Hello">
         <span class="label-body">English</span>
-        <input type="radio" name="language" class="languageRadio" value="afrikaans">
+        </div>
+        <div class="four columns">
+          <input type="radio" name="language" class="languageRadio" value="Hallo">
         <span class="label-body">Afrikaans</span>
-        <input type="radio" name="language" class="languageRadio" value="isiXhosa">
+        </div>
+        <div class="four columns">
+          <input type="radio" name="language" class="languageRadio" value="Mholo">
         <span class="label-body">IsiXhosa</span>
+        </div>
+        
       </div>
 <div class="error">
     {{#if messages.info}}
-      <p class="err">{{messages.info}}</p>
+      <span class="err">{{messages.info}}</span>
     {{/if}}
   </div>
       <br>
-      <button type="submit" class="button-primary greetMe" >Greet me</button>
-     <a href="/greeted"> <button type="button" class="button-primary reset" name="submit"> Greeted Names</button></a>
+<div class="row name">
+  <b><span class="getName">{{getMsg}}</span></b>
+</div>
+<hr>
+      <div class="row">
+        <div class="four columns">
+                  <button type="submit" class="button-primary greetMe" >Greet me</button>
 
+        </div>
+        <div class="six columns">
+               <a href="/greeted"> <button type="button" class="button-primary reset" name="submit"> Greeted Names</button></a>
+        </div>
+
+      </div>
+      
       <br>
 
   </form>
-  <b><span class="getName">{{getMsg}}</span></b>
+  
 </div>
