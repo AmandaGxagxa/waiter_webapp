@@ -11,7 +11,6 @@
         <b>counter: <span class="counter">{{count}}</span></b>
       </div>
       <h3>Name :<input type="text" class="inputName" placeholder="Enter your name" name="name" value=""></h3>
-          {{!-- <span class="errorMsg">{{errorMsg}}</span> --}}
       <div class="languages sixteen columns vertical-offset-by-one">
         <div class="four columns radio">
           <input type="radio" name="language" class="languageRadio" value="Hello">
@@ -30,6 +29,9 @@
 <div class="error">
     {{#if messages.getMsg}}
       <span class="getName">{{messages.getMsg}}</span>
+    {{/if}}
+  {{#if messages.info}}
+      <span class="err">{{messages.info}}</span>
     {{/if}}
   </div>
       <br>
