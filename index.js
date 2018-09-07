@@ -48,8 +48,7 @@ app.post("/greetings",greetRouts.postRoute);
 app.get('/greetings/:name/:lang', greetRouts.greetUrl);
 app.get('/greeted', greetRouts.greetedRoute);
 app.get('/reset', greetRouts.resert);
-
-
+app.get('/greetedtimes/:name',greetRouts.greetedTimes)
 
 let PORT = process.env.PORT || 4010;
 

@@ -16,15 +16,16 @@
       <tr>
         <th>names</th>
         <th>languages</th>
-        <th>times greeted</th>
+        {{!-- <th>times greeted</th> --}}
       </tr>
     </thead>
     <tbody>
       {{#each nameKept}}
       <tr>
-        <td>{{name}}</td>
+        
+       <td class="name"><a href="/greetedtimes/{{name}}">{{name}}</a></td>
         <td>{{language}}</td>
-        <td>{{count}}</td>
+        {{!-- <td>{{count}}</td> --}}
       </tr>
       {{/each}}
     </tbody>

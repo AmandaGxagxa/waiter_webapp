@@ -6,9 +6,10 @@ body{
   background: grey;
 
 }
-.name{
+
+.getName{
   margin-top: 5em;
-  color:green;
+  color:rgb(216, 15, 25);
 }
 .err{
   color:crimson;
@@ -18,7 +19,7 @@ body{
 }
 .back{
 color: aliceblue;
-background-color: darkgreen;
+background-color: #7fd67f;
 }
 
 
@@ -52,7 +53,7 @@ font-size: 20px;
 .reset{
 margin-left: 320px;
 color: aliceblue;
-background-color: brown;
+background-color: rgb(172, 81, 81);
 }
 .languageRadio{
   /* padding: 2px; */
@@ -68,4 +69,16 @@ h2{
 }
 .button-primary{
   margin-top: 10em;
+}
+@media only screen and (max-width: 600px) {
+  body {
+      background-color: lightblue;
+      height: 100%;
+      width: 80%;
+  }
+  container{
+    width: 80%;
+    
+  }
+  
 }
