@@ -44,7 +44,7 @@ module.exports = function (pool) {
             } else if (lang === undefined) {
                 req.flash('info', 'Please select a language!');
             } else {
-                req.flash('getMsg', lang + ', ' + greetName);
+                req.flash('getMsg', lang + ', ' + greetName +"!");
                 await services.addUserOrIncrement(greetName, lang);
             }
             let count = await services.selectCount();
