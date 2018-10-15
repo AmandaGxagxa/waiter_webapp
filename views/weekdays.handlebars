@@ -3,29 +3,30 @@
   <h1>Waiter Wap App</h1>
   <form action="/weekdays" method="POST">
 
-   <div class="displayMsg">
-        {{#if messages.info}}
-        <span class="msg">{{messages.info}}</span>
-        {{/if}}
-      </div>
+    <div class="displayMsg">
+      {{#if messages.info}}
+      <span class="msg">{{messages.info}}</span>
+      {{/if}}
+    </div>
 
     <div class="table-responsive-md col-8">
       <table class="table table-bordered">
         <thead>
           <tr>
             {{#each weekdays}}
-            <th class=" col-2"> <label class="switch">
-              <input type="checkbox" >
-              <span class="slider round"></span>
-
-            </label>  
-            {{weekdays}}      
-         </th>
+            <th class=" col-2">
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+                </label>
+              {{weekdays}}
+            </th>
             {{/each}}
           </tr>
         </thead>
+
       </table>
     </div>
-
+    <button type="submit" class="btn btn-success">Submit</button>
   </form>
 </div>
