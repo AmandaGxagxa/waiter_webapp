@@ -1,7 +1,7 @@
-<div class="containerr">
+<div class="container">
 
   <h1>Waiter Wap App</h1>
-  <form action="/weekdays" method="POST">
+  <form action="/weekdays/{{names}}" method="POST">
 
     <div class="displayMsg">
       {{#if messages.info}}
@@ -16,7 +16,7 @@
             {{#each weekdays}}
             <th class=" col-2">
               <label class="switch">
-                <input type="checkbox">
+                <input type="checkbox" class="" name="shift_days" >
                 <span class="slider round"></span>
                 </label>
               {{weekdays}}
