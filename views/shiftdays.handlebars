@@ -1,0 +1,40 @@
+<div class="container">
+
+  <h1>Waiter Wap App</h1>
+  <form  method="get" >
+
+    <div class="displayMsg">
+      {{#if messages.info}}
+      <span class="msg">{{messages.info}}</span>
+      {{/if}}
+    </div>
+
+    <div class="table-responsive-md col-8">
+      <table class="table table-bordered">
+        <thead>
+            {{#each weekdays}}
+          <tr>
+            <th class=" col-2">
+              {{shift_days}}
+            </th>
+            </tr>
+            {{/each}}
+            </thead>
+            {{!-- <tbody>
+              {{#each weekdays}}
+                <tr>
+                    <td>
+                        {{names}}
+                    </td>
+                    <td>
+                        {{shift_days}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody> --}}
+
+      </table>
+    </div>
+    {{!-- <button type="submit" class="btn btn-success">Submit</button> --}}
+  </form>
+</div>
