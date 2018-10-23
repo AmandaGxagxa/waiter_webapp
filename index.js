@@ -49,9 +49,9 @@ app.get('/weekdays/:names', waiter.shiftDays);
 
 let PORT = process.env.PORT || 3020;
 
-app.get('/', function (req, res) {
-    res.render();
-});
+// app.get('/', function (req, res) {
+//     res.render();
+// });
 
 app.listen(PORT, function () {
     console.log('App starting on port', PORT);
