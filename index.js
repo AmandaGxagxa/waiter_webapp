@@ -46,7 +46,6 @@ app.post('/weekdays/:names', waiter.addWaiter);
 app.get('/weekdays/:names', waiter.shiftDays);
 // app.get('/registration/reset', registrations.resert);
 
-
 let PORT = process.env.PORT || 3020;
 
 // app.get('/', function (req, res) {

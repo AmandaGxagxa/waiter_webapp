@@ -16,8 +16,10 @@ module.exports = function (waiterSev) {
 
     async function addWaiter (req, res) {
         try {
-            let daySelected = req.body.shift_days;
-            console.log(daySelected, 'req.body');
+            console.log('body', req.body);
+            
+            let daySelected = req.body.day;
+
             let names = req.params.names;
             let name = names.toUpperCase();
             console.log(name);
@@ -31,6 +33,7 @@ module.exports = function (waiterSev) {
                 let weekdays = weekdaysResults;
                 req.flash('info', name + ', has selected these days.');
                 let waiterResults = await waiterSev.getWaiter(name);
+                await waiterSev.createShift(name, daySelected);
 
                 res.render('weekdays', {
                     waiterResults,
