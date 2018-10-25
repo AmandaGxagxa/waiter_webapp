@@ -43,7 +43,7 @@ app.use(flash());
 
 app.get('/weekdays/:names', waiter.selectDays);
 app.post('/weekdays/:names', waiter.addWaiter);
-app.get('/weekdays/:names', waiter.shiftDays);
+app.get('/shifts/:names', waiter.shiftDays);
 // app.get('/registration/reset', registrations.resert);
 
 let PORT = process.env.PORT || 3020;

@@ -1,5 +1,5 @@
 module.exports = function (waiterSev) {
-    async function selectDays (req, res) {
+    async function selectDays(req, res) {
         try {
             let names = req.params.names;
             let name = names.toUpperCase();
@@ -14,16 +14,16 @@ module.exports = function (waiterSev) {
         }
     }
 
-    async function addWaiter (req, res) {
+    async function addWaiter(req, res) {
         try {
             console.log('body', req.body);
-            
+
             let daySelected = req.body.day;
 
             let names = req.params.names;
             let name = names.toUpperCase();
             console.log(name);
-            if (name == '') {
+            if (name === '') {
                 req.flash('err', 'Please select your shift day');
             }
             if (daySelected === undefined) {
@@ -35,10 +35,7 @@ module.exports = function (waiterSev) {
                 let waiterResults = await waiterSev.getWaiter(name);
                 await waiterSev.createShift(name, daySelected);
 
-                res.render('weekdays', {
-                    waiterResults,
-                    weekdays
-                });
+                res.redirect('/shifts/' + name);
             }
         } catch (err) {
             res.send(err.stack);
@@ -47,18 +44,12 @@ module.exports = function (waiterSev) {
 
     async function shiftDays (req, res) {
         try {
-            let daysSelected = req.body.id;
             let names = req.params.names;
             let name = names.toUpperCase();
-            for (let i = 0; i > daysSelected.length; i++) {
-                if (name.id) {
-                    daysSelected = await waiterSev.createShift(waiter_id, day_id);
-                    console.log(daysSelected);
-                };
-            };
-            // use the waiterName to get the waiterId from the db
-            // find all the ids for the selected week day names
-            // what problem
+
+            let daysSelected = await waiterSev.getUserShifts(name);
+            console.log(daysSelected);
+            
             res.render('shiftdays', {
                 daysSelected
             });
