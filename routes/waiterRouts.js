@@ -1,9 +1,31 @@
 module.exports = function (waiterSev) {
-    async function selectDays(req, res) {
+
+    async function home (req, res) {
+        res.render('home');
+    }
+
+    async function login (req, res) {
+        try {
+            let names = req.body.names;
+            let name = names.toUpperCase();
+            if (name === '') {
+                req.flash('info', 'Please enter your name.');
+                req.render('home');
+                return;
+            } else {
+                req.flash('info', 'Hello ' + name + ', please select which days will you be available in.');
+                // let weekdays = weekdaysResults;
+                res.redirect('/waiters/' + name);
+            }
+        } catch (err) {
+            res.send(err);
+        }
+    }
+    async function selectDays (req, res) {
         try {
             let names = req.params.names;
             let name = names.toUpperCase();
-            req.flash('info', 'Hello ' + name + ', please select which days will you be available in.');
+            // req.flash('info', 'Hello ' + name + ', please select which days will you be available in.');
             let weekdaysResults = await waiterSev.getDays();
             let weekdays = weekdaysResults;
             res.render('weekdays', {
@@ -14,7 +36,7 @@ module.exports = function (waiterSev) {
         }
     }
 
-    async function addWaiter(req, res) {
+    async function addWaiter (req, res) {
         try {
             console.log('body', req.body);
 
@@ -22,7 +44,7 @@ module.exports = function (waiterSev) {
 
             let names = req.params.names;
             let name = names.toUpperCase();
-            console.log(name);
+           
             if (name === '') {
                 req.flash('err', 'Please select your shift day');
             }
@@ -49,7 +71,7 @@ module.exports = function (waiterSev) {
 
             let daysSelected = await waiterSev.getUserShifts(name);
             console.log(daysSelected);
-            
+
             res.render('shiftdays', {
                 daysSelected
             });
@@ -58,10 +80,17 @@ module.exports = function (waiterSev) {
         }
     }
 
+    async function roster (req, res) {
+        let shifts = await waiterSev.getAllShifts();
+        res.render('roster', {shifts});
+    }
+
     return {
+        home,
+        login,
         selectDays,
         addWaiter,
-        shiftDays
-
+        shiftDays,
+        roster
     };
 };

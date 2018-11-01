@@ -40,10 +40,12 @@ app.use(session({
 }));
 app.use(flash());
 // initialise the flash middleware
-
-app.get('/weekdays/:names', waiter.selectDays);
-app.post('/weekdays/:names', waiter.addWaiter);
+app.get('/', waiter.home);
+app.post('/login', waiter.login);
+app.get('/waiters/:names', waiter.selectDays);
+app.post('/waiters/:names', waiter.addWaiter);
 app.get('/shifts/:names', waiter.shiftDays);
+app.get('/days', waiter.roster);
 // app.get('/registration/reset', registrations.resert);
 
 let PORT = process.env.PORT || 3020;

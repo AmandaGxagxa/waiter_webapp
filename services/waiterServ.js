@@ -1,5 +1,5 @@
 module.exports = function (pool) {
-    async function getWaiter(username) {
+    async function getWaiter (username) {
         let user = null;
         let userResults = await pool.query('select * from waiter where names = $1', [username]);
         if (userResults.rows.length > 0) {
@@ -19,7 +19,7 @@ module.exports = function (pool) {
         return weekdays.rows;
     };
 
-    async function createShift(username, selectedDays) {
+    async function createShift (username, selectedDays) {
         if (typeof selectedDays === 'string') {
             selectedDays = [selectedDays];
         }
@@ -63,12 +63,31 @@ module.exports = function (pool) {
         }
     }
 
+    async function getAllShifts () {
+        let orderedShifts = await getDays();
+        let shifts = await pool.query('select names,weekdays from shifts join waiter on shifts.names_id = waiter.id join weekdays on shifts.weekdays_id = weekdays.id');
+
+        for (let shift of shifts.rows) {
+            let foundShift = orderedShifts.find((currentShift) => currentShift.weekdays === shift.weekdays);
+            let index = orderedShifts.indexOf(foundShift);
+            if (!foundShift.waiters) {
+                foundShift.waiters = [];
+            }
+            foundShift.waiters.push(shift.names);
+            orderedShifts[index] = foundShift;
+        }
+        console.log('All-shifts', orderedShifts);
+        
+        return orderedShifts;
+    }
+
     return {
         // createOrAddWaiter,
         getDays,
         getWaiter,
         createShift,
-        getUserShifts
+        getUserShifts,
+        getAllShifts
 
     };
 };

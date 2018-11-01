@@ -1,0 +1,17 @@
+
+<div class="container">
+    <div class="row">
+        {{#each shifts}}
+        <div class="col-md-1">
+           <h3>{{weekdays}}</h3>
+           <div class="row">
+               {{#each waiters}}
+               <div class="col-md-12">
+                   {{this}}
+               </div>
+               {{/each}}
+           </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
