@@ -62,3 +62,19 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+h3{
+  border:2px solid blueviolet;
+  width: 165px;
+  
+  margin-bottom: 50px;
+}
+#names{
+  border:2px solid blueviolet;
+  width: 165px;
+  margin-top: 50px;
+  vertical-align: top;
+}
+img{
+  height: 50px;
+  width: 50px;
+}

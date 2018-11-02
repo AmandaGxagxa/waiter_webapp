@@ -82,7 +82,7 @@ module.exports = function (waiterSev) {
 
     async function roster (req, res) {
         let shifts = await waiterSev.getAllShifts();
-        res.render('roster', {shifts});
+        res.render('roster', { shifts });
     }
 
     return {

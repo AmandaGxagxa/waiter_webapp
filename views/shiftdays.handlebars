@@ -1,7 +1,7 @@
 <div class="container">
 
   <h1>Waiter Wap App</h1>
-  <form  method="get" >
+  <form method="get">
 
     <div class="displayMsg">
       {{#if messages.info}}
@@ -16,9 +16,9 @@
             {{#each daysSelected}}
             <th class=" col-2">
               <label class="switch">
-                <input type="checkbox" class="" name="day" {{checked}} >
+                <input type="checkbox" class="" name="day" {{checked}}>
                 <span class="slider round"></span>
-                </label>
+              </label>
               {{weekdays}}
             </th>
             {{/each}}
@@ -27,6 +27,9 @@
 
       </table>
     </div>
+    
+     <a href="/"><img src="../img/homes.png" alt=""></a>
+    <a href="/days"><img src="../img/calender.png" alt=""></a>
     {{!-- <button type="submit" class="btn btn-success">Submit</button> --}}
   </form>
 </div>
