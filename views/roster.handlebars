@@ -1,19 +1,30 @@
-
 <div class="container">
-   
+<h2>Here is the weekly roter</h2>
     <div class="row">
-        {{#each shifts}}
-        <div class="col-md-1">
-           <h3 class="days">{{weekdays}}</h3>
-           <div class="row">
-               {{#each waiters}}
-               <div class="col-md-12" id="names">
-                   {{this}}
-               </div>
-               {{/each}}
-           </div>
-        </div>
-        {{/each}}
+    <a href="/"><img src="../img/homes.png" alt=""></a>
+    <a href="/days"><img src="../img/calender.png" alt=""></a>
+    
+        <table  class="table">
+            
+            <thead>
+                <tr>
+                    {{#each weekdaysResults}}
+                    <th class="days">{{weekdays}}</th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+            <tr>{{#each shifts}}
+                <td>
+
+                    {{#each waiters}}
+                    <ul>{{this}}</ul>
+                    {{/each}}
+                </td>
+                {{/each}}
+            </tr>
+            </tbody>
+        </table>
 
     </div>
 </div>

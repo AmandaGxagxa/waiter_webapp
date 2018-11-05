@@ -38,7 +38,7 @@ module.exports = function (waiterSev) {
 
     async function addWaiter (req, res) {
         try {
-            console.log('body', req.body);
+            // console.log('body', req.body);
 
             let daySelected = req.body.day;
 
@@ -70,7 +70,7 @@ module.exports = function (waiterSev) {
             let name = names.toUpperCase();
 
             let daysSelected = await waiterSev.getUserShifts(name);
-            console.log(daysSelected);
+            // console.log(daysSelected);
 
             res.render('shiftdays', {
                 daysSelected
@@ -82,7 +82,9 @@ module.exports = function (waiterSev) {
 
     async function roster (req, res) {
         let shifts = await waiterSev.getAllShifts();
-        res.render('roster', { shifts });
+        let weekdaysResults = await waiterSev.getDays();
+        // console.log(weekdaysResults)
+        res.render('roster', { shifts, weekdaysResults });
     }
 
     return {

@@ -2,7 +2,7 @@
     text-align: center;
     margin: auto;
 }
-h1{
+h1, h2{
     background-color: brown;
 }
 
@@ -65,16 +65,19 @@ input:checked + .slider:before {
 h3{
   border:2px solid blueviolet;
   width: 165px;
-  
+  vertical-align: top;
   margin-bottom: 50px;
 }
 #names{
   border:2px solid blueviolet;
   width: 165px;
   margin-top: 50px;
-  vertical-align: top;
+  
 }
 img{
   height: 50px;
   width: 50px;
+}
+table, th, td{
+  border:solid;
 }

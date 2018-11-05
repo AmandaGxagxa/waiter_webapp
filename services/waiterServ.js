@@ -1,14 +1,14 @@
 module.exports = function (pool) {
+
     async function getWaiter (username) {
-        let user = null;
         let userResults = await pool.query('select * from waiter where names = $1', [username]);
-        if (userResults.rows.length > 0) {
-            user = userResults.rows[0];
-        } else {
-            // user should be added
+        let useR = userResults.rowCount;
+        console.log(useR);
+        if (useR === 0) {
+            // user = useR[0];
             await pool.query('insert into waiter (names) values ($1)', [username]);
-        }
-        return user;
+
+        };
     }
 
     const getDays = async () => {
@@ -23,10 +23,8 @@ module.exports = function (pool) {
         if (typeof selectedDays === 'string') {
             selectedDays = [selectedDays];
         }
-        console.log('selected', selectedDays);
-
         let userID = await pool.query('select id from waiter where names = $1', [username]);
-        if (userID.rowCount < 1) {
+        if (userID.rowCount === 0) {
             await pool.query('insert into waiter(names) values($1)', [username]);
             userID = await pool.query('select id from waiter where names = $1', [username]);
         }
@@ -76,7 +74,7 @@ module.exports = function (pool) {
             foundShift.waiters.push(shift.names);
             orderedShifts[index] = foundShift;
         }
-        console.log('All-shifts', orderedShifts);
+       // console.log('All-shifts', orderedShifts);
         
         return orderedShifts;
     }
