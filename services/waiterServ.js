@@ -24,11 +24,16 @@ module.exports = function (pool) {
             selectedDays = [selectedDays];
         }
         let userID = await pool.query('select id from waiter where names = $1', [username]);
-        if (userID.rowCount === 0) {
-            await pool.query('insert into waiter(names) values($1)', [username]);
-            userID = await pool.query('select id from waiter where names = $1', [username]);
-        }
+        if (userID.rowCount > 0) {
 
+          await pool.query('delete from shifts where names_id = $1', [userID.rows[0].id]);
+            
+        }else{
+
+         await pool.query('insert into waiter(names) values($1)', [username]);
+         userID = await pool.query('select id from waiter where names = $1', [username]);
+
+        }
         for (let weekday of selectedDays) {
             await pool.query('insert into shifts(names_id, weekdays_id) values($1, $2)', [userID.rows[0].id, weekday]);
         }
