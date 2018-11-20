@@ -1,0 +1,35 @@
+<div class="row">
+  <marquee behavior="ALTERNATE " direction=""><i><h2>Greeted Names</h2></i></marquee>
+  <div class="row">
+    <div class="two columns">
+          <a href="/"> <button type="button" class="btn green2 back" name="submit">Back to greet names</button></a>
+
+    </div>
+    
+   <form action="" method = "post"> <a href="/reset"> <button type="button" class="reset" name="submit">reset</button></a></form>
+
+  </div>
+  
+  <center>
+    <table>
+    <thead>
+      <tr>
+        <th>names</th>
+        <th>languages</th>
+        {{!-- <th>times greeted</th> --}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each nameKept}}
+      <tr>
+        
+       <td class="name"><a href="/greetedtimes/{{name}}">{{name}}</a></td>
+        <td>{{language}}</td>
+        {{!-- <td>{{count}}</td> --}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  </center>
+
+</div>

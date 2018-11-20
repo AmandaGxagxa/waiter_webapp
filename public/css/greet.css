@@ -1,0 +1,84 @@
+*{
+  width: auto;
+}
+body{
+  text-align: center;
+  background: grey;
+
+}
+
+.getName{
+  margin-top: 5em;
+  color:#d8920f;
+}
+.err{
+  color:crimson;
+  font-weight: bold;
+  margin-top: 5em;
+  padding: 1px;
+}
+.back{
+color: aliceblue;
+background-color: #7fd67f;
+}
+
+
+table{
+  text-align: center;
+}
+.container{
+  border: solid whitesmoke;
+  background-color: white;
+  border-radius: 20px;
+}
+.greeting{
+  font-weight: bold;
+}
+.label-body{
+  font-size: 30px;
+}
+th{
+  font-weight: bolder;
+  font-size: 30px;
+}
+td{
+  font-weight: bold;
+  font-size: 20px;
+}
+.count{
+margin-left: 400px;
+border-color: red;
+font-size: 20px;
+}
+.reset{
+margin-left: 320px;
+color: aliceblue;
+background-color: rgb(172, 81, 81);
+}
+.languageRadio{
+  /* padding: 2px; */
+  font-size: 20px;
+
+}
+span{
+  font-size: 30px;
+  font-weight:bold;
+}
+h2{
+  color: maroon;
+}
+.button-primary{
+  margin-top: 10em;
+}
+@media only screen and (max-width: 600px) {
+  body {
+      background-color: lightblue;
+      height: 100%;
+      width: 80%;
+  }
+  container{
+    width: 80%;
+    
+  }
+  
+}

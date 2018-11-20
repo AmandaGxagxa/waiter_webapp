@@ -10,3 +10,8 @@ module.exports = {
         "require" : true
     }
 }
+        "require" : true,
+        "after" : true,
+        "beforeEach" : true
+    };
+};

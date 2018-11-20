@@ -25,6 +25,21 @@
   },
   "devDependencies": {
     "eslint": "^5.7.0",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-flash": "0.0.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "pg": "^7.4.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.5.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
@@ -40,5 +55,6 @@
     "url": "https://github.com/AmandaGxagxa/waiter_webapp/issues"
   },
   "homepage": "https://github.com/AmandaGxagxa/waiter_webapp#readme",
-  "description": ""
-}
+    "mocha": "^5.2.0"
+  }
+  
